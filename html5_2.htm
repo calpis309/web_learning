@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>html5_2</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="red"></div>
+        <div id="blue"></div>
+    </div>
+</body>
+
+</html>
+
+<style>
+#container {
+    position: absolute;
+    width:250px;
+    height:250px;
+    left: 200px;
+    background:pink;
+}
+#red {
+    position: relative;
+    left:0;
+    width:50px;
+    height:50px;
+    background:#f00;
+    animation-name:slide;
+    animation-duration:2s;
+    animation-iteration-count:infinite;
+}
+#blue {
+    position: relative;
+    left:0;
+    width:50px;
+    height:50px;
+    background:blue;
+    animation-name:slide2;
+    animation-duration:5s;
+    animation-iteration-count:infinite;
+}
+@keyframes slide{
+    from{
+        left:0;
+    }
+    to{
+        left:100px;
+    }
+}
+@keyframes slide2 {
+    0%{
+        left:0;
+      }
+      75%{
+          left:150px;
+          background:#ff0;
+          transform:rotate(3deg);
+      }
+      100%{
+          left:170px;
+          background:#000;
+      }
+}
+</style>

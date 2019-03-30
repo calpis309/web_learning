@@ -1,0 +1,17 @@
+body {
+    background-color: bisque;
+}
+h1 {
+    color: blue;
+}
+.color {
+    color: red;
+}
+
+#title {
+    font-size: 40px;
+}
+
+.little {
+    font-size: 25px;
+}
