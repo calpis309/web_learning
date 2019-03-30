@@ -2,6 +2,7 @@ $( document ).ready(function() {
     console.log( "ready!" );
     // document.addEventListener('click', changeColor);
     $('#title').click(changeColor);
+    console.log( "okkkkk" );
 });
 
 function changeColor() 
