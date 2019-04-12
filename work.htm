@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="html5.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="operator">
+        <div class="count">
+            <div id="str">0</div>
+            <div id="reasult">0</div>
+        </div>
+        <div class="buttons">
+            <div class="number">
+                <div class="numList">
+                    <div id="7" class="num">7</div>
+                    <div id="8" class="num">8</div>
+                    <div id="9" class="num">9</div>
+                </div>
+                <div class="numList">
+                    <div id="4" class="num">4</div>
+                    <div id="5" class="num">5</div>
+                    <div id="6" class="num">6</div>
+                </div>
+                <div class="numList">
+                    <div id="1" class="num">1</div>
+                    <div id="2" class="num">2</div>
+                    <div id="3" class="num">3</div>
+                </div>
+                <div class="numList">
+                    <div id="dot" class="num">.</div>
+                    <div id="0" class="num">0</div>
+                    <div id="enter" class="num">=</div>
+                </div>
+            </div>
+            <div class="operators">
+                <div id="del" class="op" style="font-size: 15px;">DEL</div>
+                <div id="divide" class="op">÷</div>
+                <div id="muti" class="op">x</div>
+                <div id="less" class="op">-</div>
+                <div id="add" class="op">+</div>
+            </div>
+            <div class="side"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<style>
+#str
+{
+    width: 350px;
+    height: 120px;
+    font-size: 50px;
+    line-height: 200px;
+    font-weight: 200;
+    margin: 0px -20px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: right;
+}
+#reasult 
+{
+    width: 350px;
+    height: 80px;
+    font-size: 30px;
+    line-height: 80px;
+    font-weight: 200;
+    margin: 0px -20px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: right;
+}
+.operator 
+{
+    position: fixed;
+    overflow: hidden;
+    top: 50px;
+    left: 50px;
+    width: 350px;
+    height: 500px;
+    font-weight: 200;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+.count 
+{
+    position: absolute;
+    width: 350px;
+    height: 200px;
+    background: white;
+}
+.buttons 
+{
+    position: absolute;
+    top: 200px;
+    width: 350px;
+    height: 300px;
+    background: rgb(99,99,99);
+}
+.number
+{
+    position: absolute;
+    width: 249px;
+    height: 300px;
+    background: rgb(67,67,67);
+}
+.operators
+{
+    position: absolute;
+    left: 249px;
+    width: 81px;
+    height: 290px;
+    margin-bottom: 10px;
+}
+.side
+{
+    position: absolute;
+    left: 330px;
+    width: 20px;
+    height: 300px;
+    background: rgb(108,229,185); 
+}
+.numList
+{
+    width: 249px;
+    height: 75px;
+}
+.num
+{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 75px;
+    color: white;
+    font-size: 30px;
+    font-weight: 200;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 75px;
+}
+.op
+{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 58px;
+    color: white;
+    font-size: 25px;
+    font-weight: 200;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 58px;
+}
+.slideOutUp
+{
+  animation-name: movingBox;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+}
+.slideOutUp1
+{
+  animation-name: movingToResualt;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+}
+@keyframes movingBox {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0px, -200px);
+  }
+}
+@keyframes movingToResualt {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0px, -70px);
+  }
+}
+</style>
+
+<script>
+    var reasult = '';
+    var display = '';
+    var isFirst = true;
+    var operators = 0;
+    $("#reasult").hide();
+
+    $( document ).ready(function() {
+        $('#1').click(function(){doMath('1');});
+        $('#2').click(function(){doMath('2');});
+        $('#3').click(function(){doMath('3');});
+        $('#4').click(function(){doMath('4');});
+        $('#5').click(function(){doMath('5');});
+        $('#6').click(function(){doMath('6');});
+        $('#7').click(function(){doMath('7');});
+        $('#8').click(function(){doMath('8');});
+        $('#9').click(function(){doMath('9');});
+        $('#0').click(function(){doMath('0');});
+        $('#dot').click(function(){doMath('.');});
+        $('#del').click(function(){operator('del');});
+        $('#add').click(function(){operator('+');});
+        $('#less').click(function(){operator('-');});
+        $('#muti').click(function(){operator('*');});
+        $('#divide').click(function(){operator('/');});
+        $('#enter').click(counts);
+    });
+
+    function doMath(number) 
+    {
+        if (isFirst == true) {
+            $("#reasult").hide();
+            $("#reasult").text(0);
+            $("#str").removeClass('slideOutUp');
+            $("#reasult").removeClass('slideOutUp1');
+            reasult = '';
+            if (number == '0') {
+                return;
+            } else if (number == '.') {
+                reasult = '0'
+            }
+        }
+        isFirst = false;
+        reasult = reasult+number;
+        display = reasult.replace(/\*/i, '×');
+        display = display.replace(/\//i, '÷');
+        $("#str").text(display);
+        if (operators>0) {
+            $("#reasult").show();
+            $("#reasult").text(eval(reasult));
+        }
+    }
+
+    function operator(type) 
+    {
+        if (isFirst == true) {
+            $("#reasult").hide();
+            $("#reasult").text(0);
+            return;
+        }
+        operators++;
+        isFirst = false;
+        reasult = reasult+type;
+        if (type=='del') {
+            reasult = '0';
+            isFirst = true;
+            operators = 0;
+            $("#str").text(0);
+            $("#reasult").text(0);
+            $("#reasult").hide();
+        }
+        display = reasult.replace(/\*/i, 'x');
+        display = display.replace(/\//i, '÷');
+        $("#str").text(display);
+    }
+
+    function counts() 
+    {
+        console.log(eval(reasult));
+        $("#str").addClass('slideOutUp');
+        $("#reasult").addClass('slideOutUp1');
+        var time = setTimeout(function(){
+            $("#str").text(0);
+            $("#reasult").text(eval(reasult));
+            reasult = '0';
+            isFirst = true;
+            operators = 0;
+         } ,1000)
+    }
+</script>
