@@ -3,8 +3,7 @@ $( document ).ready(function() {
     // document.addEventListener('click', changeColor);
     $('#title').click(changeColor);
 
-
-    console.log( "!!!" );
+    console.log( "ready2!" );
 
 });
 
