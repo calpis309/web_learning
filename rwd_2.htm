@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>mostly fluid</title>
+</head>
+<body>
+  <div class="container">
+    <h1>這是可愛的貓咪圖片</h1>
+    <img src="http://www.scan001.com/images/pbh3/wall/20061104/1600cat_0020.jpg"></img>
+  </div>
+</body>
+</html>
+
+<style>
+
+.container {
+  width: 800px;
+  font-size: 15px;
+}
+
+img {
+    width: 50%;	
+}
+
+@media (min-width: 600px) {
+  img {
+    width: 50%;	
+  }
+}
+
+@media (min-width: 800px) {
+  img {
+    width: 100%;
+  }
+  .container {
+    font-size: 25px;
+  }
+}
+
+</style>

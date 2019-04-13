@@ -8,7 +8,7 @@ $( document ).ready(function() {
 function changeColor() 
 {
     alert( "changeColor!" );
-    $('#title').css("color", "black");
+    $('#title').css("font-size", "12px");
 }
 
 function varTest() 
@@ -32,7 +32,7 @@ function varTest()
         console.log(reasult);
     }
 
-    var test = 5;
+    var test = '6';
     if (test<6) {
         console.log("less");
     } else if (test==6){
