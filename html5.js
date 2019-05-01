@@ -4,7 +4,7 @@ $( document ).ready(function() {
     $('#title').click(changeColor);
 
     console.log( "ready2!" );
-    console.log("ready5555");
+    console.log("ready789");
 });
 
 function changeColor() 
